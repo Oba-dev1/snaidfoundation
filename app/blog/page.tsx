@@ -1,6 +1,6 @@
 import { Section } from "@/components/ui/Section";
 import Link from "next/link";
-// import { client } from "@/lib/sanity";
+import { client } from "@/lib/sanity";
 
 // Define Post type
 interface Post {
@@ -9,44 +9,27 @@ interface Post {
     slug: { current: string };
     publishedAt: string;
     excerpt: string;
+    mainImage?: any;
 }
 
-// Mock data for initial build - Replace with sanity fetch later
-const mockPosts: Post[] = [
-    {
-        _id: "1",
-        title: "SNAID Foundation put smiles on pupils at LEA Primary School",
-        slug: { current: "snaid-foundation-school-visit" },
-        publishedAt: "2024-08-12",
-        excerpt: "Our team visited Aleita to distribute educational materials...",
-    },
-    {
-        _id: "2",
-        title: "Official Launch and Unveiling",
-        slug: { current: "official-launch" },
-        publishedAt: "2024-07-15",
-        excerpt: "A landmark day as we officially unveiled our mission...",
-    },
-];
-
-/* 
 // Sanity Fetch Function
 async function getPosts() {
-  const query = `*[_type == "post"] | order(publishedAt desc) {
+    const query = `*[_type == "post"] | order(publishedAt desc) {
     _id,
     title,
     slug,
     publishedAt,
-    excerpt
+    "excerpt": array::join(string::split((pt::text(body)), "")[0..200], "") + "...",
+    mainImage
   }`;
-  const posts = await client.fetch(query);
-  return posts;
+    const posts = await client.fetch(query);
+    return posts;
 }
-*/
+
+export const revalidate = 60; // Revalidate every 60 seconds
 
 export default async function BlogPage() {
-    // const posts = await getPosts(); 
-    const posts = mockPosts;
+    const posts = await getPosts();
 
     return (
         <div className="bg-gray-50 min-h-screen">

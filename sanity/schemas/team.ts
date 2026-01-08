@@ -33,5 +33,25 @@ export default defineType({
             title: 'Display Order',
             type: 'number',
         }),
+        defineField({
+            name: 'facebook',
+            title: 'Facebook URL',
+            type: 'url',
+        }),
+        defineField({
+            name: 'twitter',
+            title: 'Twitter (X) URL',
+            type: 'url',
+        }),
+        defineField({
+            name: 'linkedin',
+            title: 'LinkedIn URL',
+            type: 'url',
+        }),
+        defineField({
+            name: 'instagram',
+            title: 'Instagram URL',
+            type: 'url',
+        }),
     ],
 })

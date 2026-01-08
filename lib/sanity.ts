@@ -4,5 +4,6 @@ export const client = createClient({
     projectId: "hppwja2l",
     dataset: "production",
     apiVersion: "2024-01-01",
-    useCdn: false, // Turn off CDN for fresh data during dev, or on for prod
+    useCdn: false,
+    token: process.env.NEXT_PUBLIC_SANITY_TOKEN, // Needed for write operations (create volunteer)
 });

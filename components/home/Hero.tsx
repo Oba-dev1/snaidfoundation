@@ -7,9 +7,9 @@ import { faHeart, faUser } from "@fortawesome/free-solid-svg-icons";
 
 // User: Add your Cloudinary links here
 const heroImages = [
-    "https://res.cloudinary.com/dws3lnn4d/image/upload/v1767866146/IMG-20251016-WA0017_jjyci5.jpg",
-    "https://res.cloudinary.com/dws3lnn4d/image/upload/v1767866352/IMG-20251016-WA0082_nkmtzc.jpg",
-    "https://res.cloudinary.com/dws3lnn4d/image/upload/v1767866686/IMG-20251016-WA0084_guskiz.jpg",
+    "https://res.cloudinary.com/dws3lnn4d/image/upload/v1767866146/IMG-20251016-WA0017_jjyci5.jpg", // Image 1
+    "https://res.cloudinary.com/dws3lnn4d/image/upload/v1767866352/IMG-20251016-WA0082_nkmtzc.jpg", // Image 2
+    "https://res.cloudinary.com/dws3lnn4d/image/upload/v1767866686/IMG-20251016-WA0084_guskiz.jpg", // Image 3
 ];
 
 export function Hero() {

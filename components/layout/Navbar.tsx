@@ -17,7 +17,7 @@ export function Navbar() {
         { name: 'Our Team', href: '/team' },
         { name: 'Events', href: '/events' },
         { name: 'Get Involved', href: '/get-involved' },
-        { name: 'Media', href: '/media' },
+        { name: 'Blog', href: '/blog' },
     ];
 
     return (

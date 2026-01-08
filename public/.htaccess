@@ -1,0 +1,20 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # 1. Handle Sanity Studio SPA (rewrites everything under /studio to studio.html)
+  RewriteRule ^studio(?:/.*)?$ studio.html [QSA,L]
+
+  # 2. Add .html file extension (Clean URLs)
+  # If the request is for a file that exists, serve it
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Else, try appending .html
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.*)$ $1.html [L]
+
+  # 3. Custom 404
+  ErrorDocument 404 /404.html
+</IfModule>

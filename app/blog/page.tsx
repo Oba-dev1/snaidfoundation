@@ -1,6 +1,13 @@
 import { Section } from "@/components/ui/Section";
 import Link from "next/link";
 import { client } from "@/lib/sanity";
+import imageUrlBuilder from '@sanity/image-url';
+
+const builder = imageUrlBuilder(client);
+
+function urlFor(source: any) {
+    return builder.image(source);
+}
 
 // Define Post type
 interface Post {
@@ -8,28 +15,35 @@ interface Post {
     title: string;
     slug: { current: string };
     publishedAt: string;
-    excerpt: string;
+    body: any;
     mainImage?: any;
 }
 
 // Sanity Fetch Function
 async function getPosts() {
-    const query = `*[_type == "post"] | order(publishedAt desc) {
+    // Check for defined slug to prevent build errors
+    const query = `*[_type == "post" && defined(slug.current)] | order(publishedAt desc) {
     _id,
     title,
     slug,
     publishedAt,
-    "excerpt": array::join(string::split((pt::text(body)), "")[0..200], "") + "...",
+    body,
     mainImage
   }`;
     const posts = await client.fetch(query);
     return posts;
 }
 
-export const revalidate = 60; // Revalidate every 60 seconds
+// Helper to extract plain text
+function getExcerpt(body: any) {
+    if (!body || !Array.isArray(body)) return "";
+    const block = body.find((b: any) => b._type === "block");
+    if (!block || !block.children) return "";
+    return block.children.map((child: any) => child.text).join(" ").substring(0, 150) + "...";
+}
 
 export default async function BlogPage() {
-    const posts = await getPosts();
+    const posts: Post[] = await getPosts();
 
     return (
         <div className="bg-gray-50 min-h-screen">
@@ -42,29 +56,43 @@ export default async function BlogPage() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {posts.map((post) => (
-                        <div key={post._id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow">
-                            <div className="h-48 bg-gray-200">
-                                {/* Image Placeholder */}
-                            </div>
-                            <div className="p-6">
-                                <div className="text-sm text-gray-500 mb-2">
-                                    {new Date(post.publishedAt).toLocaleDateString()}
+                    {posts.length > 0 ? (
+                        posts.map((post) => (
+                            <div key={post._id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow flex flex-col">
+                                <div className="h-48 bg-gray-200 overflow-hidden relative">
+                                    {post.mainImage && (
+                                        <img
+                                            src={urlFor(post.mainImage).width(600).height(400).url()}
+                                            alt={post.title}
+                                            className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                                        />
+                                    )}
                                 </div>
-                                <h2 className="text-xl font-bold text-gray-800 mb-3 hover:text-snaf-green">
-                                    <Link href={`/blog/${post.slug.current}`}>
-                                        {post.title}
-                                    </Link>
-                                </h2>
-                                <p className="text-gray-600 mb-4 line-clamp-3">
-                                    {post.excerpt}
-                                </p>
-                                <Link href={`/blog/${post.slug.current}`} className="text-snaf-green font-bold text-sm hover:underline">
-                                    Read Article &rarr;
-                                </Link>
+                                <div className="p-6 flex flex-col flex-grow">
+                                    <div className="text-sm text-gray-500 mb-2">
+                                        {post.publishedAt ? new Date(post.publishedAt).toLocaleDateString() : 'Recent'}
+                                    </div>
+                                    <h2 className="text-xl font-bold text-gray-800 mb-3 hover:text-snaf-green line-clamp-2">
+                                        <Link href={`/blog/${post.slug.current}`}>
+                                            {post.title}
+                                        </Link>
+                                    </h2>
+                                    <p className="text-gray-600 mb-4 line-clamp-3">
+                                        {getExcerpt(post.body)}
+                                    </p>
+                                    <div className="mt-auto">
+                                        <Link href={`/blog/${post.slug.current}`} className="text-snaf-green font-bold text-sm hover:underline">
+                                            Read Article &rarr;
+                                        </Link>
+                                    </div>
+                                </div>
                             </div>
+                        ))
+                    ) : (
+                        <div className="col-span-full text-center py-20">
+                            <p className="text-gray-500 text-lg">No posts found. Check back soon!</p>
                         </div>
-                    ))}
+                    )}
                 </div>
             </Section>
         </div>

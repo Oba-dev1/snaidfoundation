@@ -2,7 +2,7 @@ import { Section } from "../ui/Section";
 
 export function FounderMessage() {
     return (
-        <Section className="bg-white py-20">
+        <Section className="bg-gray-50 py-20">
             <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
 
                 {/* Text Content */}

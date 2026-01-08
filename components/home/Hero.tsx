@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Button } from "../ui/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faUser } from "@fortawesome/free-solid-svg-icons";
+import { motion } from "framer-motion";
 
 // User: Add your Cloudinary links here
 const heroImages = [
@@ -39,7 +40,12 @@ export function Hero() {
             ))}
 
             {/* Content Overlay */}
-            <div className="relative h-full container mx-auto px-4 flex flex-col justify-center items-start text-white z-10">
+            <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="relative h-full container mx-auto px-4 flex flex-col justify-center items-start text-white z-10"
+            >
                 <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 max-w-4xl leading-tight">
                     Together, We Create <span className="text-snaf-orange">Change.</span>
                 </h1>
@@ -55,7 +61,7 @@ export function Hero() {
                         Donate <FontAwesomeIcon icon={faHeart} className="ml-2 h-4 w-4" />
                     </Button>
                 </div>
-            </div>
+            </motion.div>
 
             {/* Carousel Indicators */}
             <div className="absolute bottom-8 left-0 right-0 flex justify-center gap-3 z-10">

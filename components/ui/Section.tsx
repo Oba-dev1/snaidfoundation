@@ -1,6 +1,9 @@
-import classNames from 'classnames';
+"use client";
 
-interface SectionProps extends React.HTMLAttributes<HTMLElement> {
+import classNames from 'classnames';
+import { motion, HTMLMotionProps } from 'framer-motion';
+
+interface SectionProps extends HTMLMotionProps<"section"> {
     container?: boolean;
     className?: string;
     children: React.ReactNode;
@@ -13,8 +16,12 @@ export function Section({
     ...props
 }: SectionProps) {
     return (
-        <section
-            className={classNames('py-16 md:py-24', className)}
+        <motion.section
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className={classNames('py-12 md:py-16', className)}
             {...props}
         >
             {container ? (
@@ -24,6 +31,6 @@ export function Section({
             ) : (
                 children
             )}
-        </section>
+        </motion.section>
     );
 }

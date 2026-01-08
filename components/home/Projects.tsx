@@ -38,7 +38,7 @@ export default async function Projects() {
     const projects: Project[] = await getProjects();
 
     return (
-        <Section className="bg-white py-20">
+        <Section className="bg-gray-50 py-20">
             <div className="text-center mb-16">
                 <span className="font-serif font-bold text-snaf-green text-lg">Trending Causes</span>
                 <h2 className="text-4xl md:text-5xl font-serif font-bold mt-2 text-snaf-green">

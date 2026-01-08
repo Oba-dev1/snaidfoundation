@@ -1,0 +1,89 @@
+import { Section } from "@/components/ui/Section";
+import Link from "next/link";
+// import { client } from "@/lib/sanity";
+
+// Define Post type
+interface Post {
+    _id: string;
+    title: string;
+    slug: { current: string };
+    publishedAt: string;
+    excerpt: string;
+}
+
+// Mock data for initial build - Replace with sanity fetch later
+const mockPosts: Post[] = [
+    {
+        _id: "1",
+        title: "SNAID Foundation put smiles on pupils at LEA Primary School",
+        slug: { current: "snaid-foundation-school-visit" },
+        publishedAt: "2024-08-12",
+        excerpt: "Our team visited Aleita to distribute educational materials...",
+    },
+    {
+        _id: "2",
+        title: "Official Launch and Unveiling",
+        slug: { current: "official-launch" },
+        publishedAt: "2024-07-15",
+        excerpt: "A landmark day as we officially unveiled our mission...",
+    },
+];
+
+/* 
+// Sanity Fetch Function
+async function getPosts() {
+  const query = `*[_type == "post"] | order(publishedAt desc) {
+    _id,
+    title,
+    slug,
+    publishedAt,
+    excerpt
+  }`;
+  const posts = await client.fetch(query);
+  return posts;
+}
+*/
+
+export default async function BlogPage() {
+    // const posts = await getPosts(); 
+    const posts = mockPosts;
+
+    return (
+        <div className="bg-gray-50 min-h-screen">
+            <Section className="pb-8 pt-24">
+                <div className="text-center max-w-2xl mx-auto mb-12">
+                    <h1 className="text-4xl md:text-5xl font-serif font-bold text-snaf-green mb-4">Our Blog</h1>
+                    <p className="text-gray-600">
+                        Updates, stories, and impact reports from the Supreme Nimble Aid Foundation.
+                    </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {posts.map((post) => (
+                        <div key={post._id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow">
+                            <div className="h-48 bg-gray-200">
+                                {/* Image Placeholder */}
+                            </div>
+                            <div className="p-6">
+                                <div className="text-sm text-gray-500 mb-2">
+                                    {new Date(post.publishedAt).toLocaleDateString()}
+                                </div>
+                                <h2 className="text-xl font-bold text-gray-800 mb-3 hover:text-snaf-green">
+                                    <Link href={`/blog/${post.slug.current}`}>
+                                        {post.title}
+                                    </Link>
+                                </h2>
+                                <p className="text-gray-600 mb-4 line-clamp-3">
+                                    {post.excerpt}
+                                </p>
+                                <Link href={`/blog/${post.slug.current}`} className="text-snaf-green font-bold text-sm hover:underline">
+                                    Read Article &rarr;
+                                </Link>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </Section>
+        </div>
+    );
+}

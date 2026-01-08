@@ -7,10 +7,10 @@ export function MissionSummary() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 {/* Left Content - Staggered Images */}
                 <div className="relative h-[500px] hidden lg:block">
-                    <div className="absolute top-0 left-0 w-3/5 h-4/5 bg-gray-200 rounded-lg shadow-lg" style={{ backgroundImage: 'url("")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+                    <div className="absolute top-0 left-0 w-3/5 h-4/5 bg-gray-200 rounded-lg shadow-lg" style={{ backgroundImage: 'url("https://res.cloudinary.com/dws3lnn4d/image/upload/v1767867578/IMG-20251016-WA0015_krw4cl.jpg")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
                         {/* Image 1 Placeholder */}
                     </div>
-                    <div className="absolute bottom-0 right-0 w-3/5 h-4/5 bg-gray-300 rounded-lg shadow-lg border-4 border-white" style={{ backgroundImage: 'url("")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+                    <div className="absolute bottom-0 right-0 w-3/5 h-4/5 bg-gray-300 rounded-lg shadow-lg border-4 border-white" style={{ backgroundImage: 'url("https://res.cloudinary.com/dws3lnn4d/image/upload/v1767867516/IMG-20251016-WA0037_ook9ac.jpg")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
                         {/* Image 2 Placeholder */}
                     </div>
                 </div>

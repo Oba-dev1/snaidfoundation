@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "zip": "node scripts/zip-build.js"
   },
   "dependencies": {
     "@fortawesome/free-brands-svg-icons": "^7.1.0",
@@ -28,6 +29,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "archiver": "^7.0.1",
     "eslint": "^9",
     "eslint-config-next": "16.1.1",
     "tailwindcss": "^4",

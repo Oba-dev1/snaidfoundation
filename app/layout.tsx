@@ -21,6 +21,8 @@ export const metadata: Metadata = {
   description: "Official website of Supreme Nimble Aid Foundation (SNAID). Empowering lives and building brighter futures.",
   icons: {
     icon: '/SNAFpng09.png',
+    shortcut: '/SNAFpng09.png',
+    apple: '/SNAFpng09.png',
   },
 };
 
@@ -32,14 +34,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${lora.variable} ${nunitoSans.variable} antialiased font-sans flex flex-col min-h-screen`}
+        className={`${lora.variable} ${nunitoSans.variable} antialiased font-sans flex flex-col min-h-screen bg-white`}
         suppressHydrationWarning
       >
-        <Navbar />
-        <main className="flex-grow">
-          {children}
-        </main>
-        <Footer />
+        <div className="w-full max-w-[1920px] mx-auto bg-white shadow-2xl min-h-screen flex flex-col">
+          <Navbar />
+          <main className="flex-grow">
+            {children}
+          </main>
+          <Footer />
+        </div>
       </body>
     </html>
   );

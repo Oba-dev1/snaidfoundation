@@ -24,7 +24,7 @@ export function Navbar() {
         <header className="w-full bg-white shadow-sm z-50 relative">
             {/* Top Bar */}
             <div className="bg-gray-50 border-b border-gray-100 hidden md:block">
-                <div className="container mx-auto px-4 py-2 flex justify-between items-center text-xs font-medium text-gray-600">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex justify-between items-center text-xs font-medium text-gray-600">
                     <div className="flex gap-4">
                         <span>Together, We Create Change</span>
                         <span>|</span>
@@ -42,7 +42,7 @@ export function Navbar() {
             </div>
 
             {/* Main Navbar */}
-            <div className="container mx-auto px-4 py-4">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
                 <div className="flex items-center justify-between">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-2">
@@ -88,7 +88,7 @@ export function Navbar() {
                 "lg:hidden absolute top-full left-0 w-full bg-white shadow-xl transition-all duration-300 ease-in-out overflow-hidden",
                 { "max-h-[500px] py-6": isOpen, "max-h-0": !isOpen }
             )}>
-                <div className="container mx-auto px-4 flex flex-col gap-4">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-4">
                     {navigation.map((item) => (
                         <Link
                             key={item.name}

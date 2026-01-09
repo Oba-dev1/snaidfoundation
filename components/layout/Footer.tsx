@@ -6,7 +6,7 @@ import { faEnvelope, faPhone, faLocationDot } from '@fortawesome/free-solid-svg-
 export function Footer() {
     return (
         <footer className="bg-[#1a1a1a] text-white pt-16 pb-8">
-            <div className="container mx-auto px-4">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
                     {/* About Column */}
                     <div>
@@ -85,7 +85,7 @@ export function Footer() {
                 </div>
 
                 <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
-                    <p>&copy; {new Date().getFullYear()} Supreme Nimble Aid Foundation. All rights reserved.</p>
+                    <p>&copy; {new Date().getFullYear()} Supreme Nimble Aid Foundation. All rights reserved. (v2.2)</p>
                     <div className="flex gap-4">
                         <Link href="/privacy" className="hover:text-white">Privacy Policy</Link>
                         <Link href="/terms" className="hover:text-white">Terms of Service</Link>

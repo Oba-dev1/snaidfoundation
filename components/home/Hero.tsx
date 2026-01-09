@@ -44,7 +44,7 @@ export function Hero() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="relative h-full container mx-auto px-4 flex flex-col justify-center items-start text-white z-10"
+                className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center items-start text-white z-10"
             >
                 <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 max-w-4xl leading-tight">
                     Together, We Create <span className="text-snaf-orange">Change.</span>
